@@ -3,6 +3,9 @@
 使い方:
     uv run python -m app.agent "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？"
     uv run python -m app.agent --trace "LoRAとQLoRAの違いは？"   # ツール呼び出しを表示
+
+    uv run python -m app.agent "今日の学習記録として、〇〇を学んだことを保存して" # 第3回:宿題（実装レベル）にて
+
     uv run python -m app.agent --mcp --trace "LoRAとは？"        # 第5回: ツールを MCP サーバーから受け取る
     uv run python -m app.agent --mcp --list-tools               # 第5回: モデルに見えるツール一覧（APIキー不要）
 
@@ -16,7 +19,7 @@ import inspect
 import json
 from pathlib import Path
 
-from pydantic_ai import Agent
+from pydantic_ai import Agent, DeferredToolRequests, DeferredToolResults
 from pydantic_ai.exceptions import ModelHTTPError
 from fastmcp import Client
 from pydantic_ai.mcp import MCPToolset, StdioTransport
@@ -38,11 +41,18 @@ INSTRUCTIONS = """\
 """
 
 # モデルは実行時に渡す（テストではAPIを呼ばない TestModel に差し替えるため）
-agent = Agent(instructions=INSTRUCTIONS)
+# agent = Agent(instructions=INSTRUCTIONS)
+agent = Agent(instructions=INSTRUCTIONS,  # 第3回　宿題用に書き換え
+              output_type = [str, DeferredToolRequests])
 agent.tool_plain(tools.search_glossary)
 agent.tool_plain(tools.get_lecture_summary)
 
 # TODO(第3回 演習): tools.py に make_quiz を作り、ここで登録しよう
+agent.tool_plain(tools.make_quiz)
+
+# 第3回　宿題
+agent.tool_plain(tools.save_learning_log, requires_approval = True)
+
 
 # 第5回: 使う MCP サーバーの設定ファイル。Claude Desktop や Cursor と同じ "mcpServers" 形式
 MCP_CONFIG = Path(__file__).resolve().parent / "mcp_servers.json"
@@ -132,9 +142,38 @@ def main() -> None:
     except ModelHTTPError as e:
         print(api_error_message(e.status_code, str(e.body)[:200]))
         raise SystemExit(1)
+
+    # 第3回 宿題にて追加: 全部の合計のrequestsとtool_callsを表示したい_01
+    total_usage = result.usage
+
+    # 第3回 宿題にて追加: 承認が必要なツール呼び出しがあれば、ユーザーに確認してから再実行する
+    if isinstance(result.output, DeferredToolRequests):
+        requests = result.output
+        decisions = DeferredToolResults()
+
+        for call in requests.approvals: # 承認が必要なツール呼び出しを順番に確認
+            print(f"{call.tool_name} の呼び出し: {call.args}")
+            answer = input('実行を承認しますか？ [y/N]: ')
+            decisions.approvals[call.tool_call_id] = answer.strip().lower() == 'y'
+
+        result = target.run_sync(
+            args.question,
+            model = build_model(),
+            message_history = result.all_messages(),
+            deferred_tool_results = decisions
+        )
+    
+        # 第3回 宿題にて追加: 全部の合計のrequestsとtool_callsを表示したい_02
+        total_usage += result.usage
+
     print(result.output)
     if args.trace:
         print_trace(result)
+        # 第3回 宿題にて追加: 全部の合計のrequestsとtool_callsを表示したい_03
+        print(
+            f'[usage total] requests={total_usage.requests}, '
+            f'tool_calls={total_usage.tool_calls}'
+        )
 
 
 if __name__ == "__main__":
