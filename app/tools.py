@@ -7,10 +7,11 @@
 import json
 from functools import cache
 from pathlib import Path
+import random # make_quiz用
+import datetime # save_learning_log
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 MAX_RESULTS = 3
-
 
 @cache
 def load_glossary() -> list[dict]:
@@ -77,3 +78,55 @@ def get_lecture_summary(lecture: int) -> str:
         available = sorted(p.stem for p in (DATA_DIR / "lectures").glob("*.md"))
         return f"第{lecture}回の要点はまだありません。用意されている回: {', '.join(available)}"
     return path.read_text(encoding="utf-8")
+
+def make_quiz(lecture: int) -> str:
+    """指定した回の用語から一つを選び、
+    確認問題と答えを返す。
+
+    「第2回の確認問題を出して」のように、
+    復習用の問題を求められた際に使う。
+    """
+    # 1. load_glossary() からlecture が一致する用語を集める
+    candidates = [
+        entry for entry in load_glossary() if entry["lecture"] == lecture
+    ]
+
+    if not candidates:
+        return f"第{lecture}回の用語が見つかりません。"
+    
+    # 2. 1つを選ぶ(random.choice)
+    entry = random.choice(candidates)
+
+    # 3. 問題と答えをセットで文字列で返す(json.dumps など)
+    # ensure_ascii=False は、日本語を \u... 形式にせず、そのままJSON文字列にする指定。
+    return json.dumps(
+        {
+            'question': f'「{entry["term"]}」の意味は？',
+            'answer': entry['definition']
+        },
+        ensure_ascii = False
+    )
+
+def save_learning_log(saving_log: str) -> str:
+    """
+    学習記録の本文を、JSTの日時付きで learning_log/ に保存する。
+    利用者から学習内容や気づきを記録するよう頼まれたときに使う。
+    """
+    # 保存先のフォルダを定義する（なければ作る
+    dir_path = Path(__file__).resolve().parent.parent / 'learning_log'
+    dir_path.mkdir(parents = True, exist_ok = True)
+
+    # JST（UTC+9）のタイムゾーンオブジェクトを作成
+    JST = datetime.timezone(datetime.timedelta(hours = 9))
+
+    # タイムゾーンを指定して現在時刻を取得
+    now_jst = datetime.datetime.now(JST)
+    time_stamp = now_jst.strftime('%Y-%m-%d %H:%M:%S') # 現在時間をスタンプに
+
+    file_full = dir_path / f'{time_stamp.split()[0]}.md' # 引数が空だとsplitされるんで、年月日部分をファイル名に
+
+    # 追記モード（'a')は、ファイルがあったら追記、ない場合は作って書き込む　
+    with file_full.open('a', encoding = 'utf-8') as f:
+        f.write(f"## {time_stamp}\n{saving_log}\n\n")
+        
+    return f'学習記録を {file_full.name} に保存しました'
