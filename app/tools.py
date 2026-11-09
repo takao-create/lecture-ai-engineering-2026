@@ -123,7 +123,7 @@ def save_learning_log(saving_log: str) -> str:
     now_jst = datetime.datetime.now(JST)
     time_stamp = now_jst.strftime('%Y-%m-%d %H:%M:%S') # 現在時間をスタンプに
 
-    file_full = dir_path / f'{time_stamp.split()[0]}.md' # 引数が空だとsplitされるんで、年月日部分をファイル名に
+    file_full = dir_path / f'{time_stamp.split()[0]}.md' # 引数が空だとスペースでsplitされるんで、年月日部分をファイル名に
 
     # 追記モード（'a')は、ファイルがあったら追記、ない場合は作って書き込む　
     with file_full.open('a', encoding = 'utf-8') as f:
