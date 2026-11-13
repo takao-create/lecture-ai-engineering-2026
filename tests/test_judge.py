@@ -17,6 +17,7 @@ from app.judge import (
     overall,
     read_jsonl,
     summarize,
+    load_verdicts, # 第4回：途中で落ちちゃう問題を解決したい
 )
 
 INSTRUCTOR_LABELS = judge.ROOT / "lectures" / "04" / "reference" / "labels_instructor.jsonl"
@@ -68,3 +69,25 @@ def test_judge_pipeline_with_fake_model():
     assert summary["coverage"]["covered"] + len({r["id"] for r in summary["review"]}) == 10
     for m in summary["mismatches"]:
         assert m["kind"] in ("見逃し", "過検出")
+
+def test_judge_cases_keeps_existing_verdict(): # 第4回:途中で落ちちゃう問題を解決したい　仕組みのテスト
+    case = read_jsonl(DEFAULT_CASES)[0]
+    saved = {'sentinel': {'reason': 'already saved'}}
+    verdicts = {case['id']:saved}
+    agent = build_judge(
+        build_test_model(),
+        DEFAULT_RUBRIC.read_text(encoding = 'utf-8')
+    )
+
+    result = judge_cases(agent, [case], verdicts = verdicts)
+
+    assert result[case['id']] == saved
+
+def test_load_verdicts_reads_file(tmp_path):
+    path = tmp_path / 'progress.jsonl'
+    path.write_text(
+        '{"id": "01", "verdict": {"grounding": "pass"}}\n',
+        encoding = 'utf-8'
+    )
+
+    assert load_verdicts(path) == {'01': {"grounding": "pass"}}

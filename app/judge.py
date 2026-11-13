@@ -66,6 +66,12 @@ class JudgeResult(BaseModel):
 
 
 # ---------------------------------------------------------------- 読み書き
+def load_verdicts(path: Path) -> dict[str, dict]: # 第4回：途中で落ちちゃう問題を解決したい
+    '''進捗JSONLを id → 判定結果の辞書にする ファイルがない場合は空にする'''
+    if not path.exists():
+        return {}
+    return {row['id']: row['verdict'] for row in read_jsonl(path)}
+
 def read_jsonl(path: Path) -> list[dict]:
     with open(path, encoding="utf-8") as f:
         return [json.loads(line) for line in f if line.strip()]
@@ -188,11 +194,19 @@ def build_test_model() -> FunctionModel:
 
 
 # ---------------------------------------------------------------- 採点と集計
-def judge_cases(agent: Agent, cases: list[dict], wait: float = 0.0) -> dict[str, dict]:
+# def judge_cases(agent: Agent, cases: list[dict], wait: float = 0.0) -> dict[str, dict]:
+def judge_cases(agent: Agent, cases: list[dict], wait: float = 0.0,
+                verdicts: dict[str, dict] | None = None, # mainから辞書をもらう
+                progress_path: Path | None = None) -> dict[str, dict]: # 保存先をもらう
+    
     """評価セットを 1 件ずつ採点する。戻り値は id → {基準: {reason, verdict}}。"""
-    verdicts: dict[str, dict] = {}
+    # verdicts: dict[str, dict] = {}
+    verdicts = {} if verdicts is None else verdicts # 辞書が渡されればそれを使う、なければ定義する
     print(f"採点中 {len(cases)} 件 ", end="", flush=True)
     for case in cases:
+        if case['id'] in verdicts: # 辞書にあるやつはスキップする
+            continue
+
         result = agent.run_sync(judge_prompt(case))
         out: JudgeResult = result.output
         verdicts[case["id"]] = {key: getattr(out, key).model_dump() for key, _ in LLM_CRITERIA}
@@ -200,6 +214,16 @@ def judge_cases(agent: Agent, cases: list[dict], wait: float = 0.0) -> dict[str,
             "reason": "末尾（最後の行）に「第N回」があるかをコードで判定",
             "verdict": check_lecture_mark(case["answer"]),
         }
+
+        # 第4回: 第4回:途中で落ちちゃう問題を解決したい　保存する部分
+        if progress_path is not None:
+            write_jsonl(
+                progress_path,
+                [
+                    {'id': case_id, 'verdict': verdict} for case_id, verdict in verdicts.items()
+                ]
+            )
+
         print(".", end="", flush=True)
         if wait:
             time.sleep(wait)
@@ -365,8 +389,16 @@ def main(argv: list[str] | None = None) -> None:
         print(f"[model] {model_name}  temperature=0  rubric={_rel(args.rubric)}")
 
     judge = build_judge(model, rubric)
+    
+    # 第4回:途中で落ちちゃう問題を解決したい
+    progress_path = args.out.with_name(f'{args.out.stem}.progress.jsonl') # --out で貰った名から作る
+    verdicts = load_verdicts(progress_path)
+
     try:
-        verdicts = judge_cases(judge, cases, wait=args.wait)
+        # verdicts = judge_cases(judge, cases, wait=args.wait)
+        verdicts = judge_cases(judge, cases, wait=args.wait,
+                               verdicts = verdicts,           # 読み込んだ辞書を渡す
+                               progress_path = progress_path) # 保存するアドレスも渡す
     except ModelHTTPError as e:
         print("\n" + api_error_message(e.status_code, str(e.body)[:200]))
         raise SystemExit(1)
