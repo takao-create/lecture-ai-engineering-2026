@@ -137,6 +137,22 @@ def search(query: str) -> list[dict]:
         """, (sqlite_vec.serialize_float32(vector), RAG_TOP_K))
         return [dict(row) for row in rows]
 
+def add_neighbor_pages(hits: list[dict]) -> list[dict]: # 第5回 実装レベル宿題：前後1ページも取得するための関数
+    pages_by_location = {
+        (page['document_id'], page['page']): page for page in load_pages()
+    }
+
+    expanded = list(hits)
+    seen = {hit['page_id'] for hit in hits}
+
+    for hit in hits:
+        for page_number in (hit['page'] - 1, hit['page'] + 1):
+            page = pages_by_location.get((hit['document_id'], page_number))
+            if page is not None and page['page_id'] not in seen:
+                expanded.append(page)
+                seen.add(page['page_id'])
+
+    return expanded
 
 def search_graph(query: str) -> dict:
     """ベクトル検索を入口に、前後ページと共通用語で候補を広げる。"""

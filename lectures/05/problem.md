@@ -57,6 +57,7 @@ APIキーは第1回と同じ環境変数`GEMINI_API_KEY`を使います。Codesp
 AIE_QUESTION='第2回の説明では、LoRAは何を固定し何を学習しますか？ QLoRAは何を加えますか？'
 uv run python -m app.agent --full-context --trace "$AIE_QUESTION"
 ```
+<!-- memo:57行目のように書いて実行するとターミナルの「今の作業環境に変数を保持できる」ため、複数のコマンドで同じ質問を使い回せる-->
 
 回答と引用ページ、末尾の`[time]`・`[usage]`・`[cost]`を[answer.md](answer.md)に記録します。
 
