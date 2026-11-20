@@ -164,3 +164,23 @@ RSIの循環やエージェントによる自己改善の文脈において、�
 [time] 回答完了まで 5.50 秒（検索・埋め込みを含む）
 [usage] 入力 12,219 tokens / 出力 490 tokens / モデル応答 3 回
 [cost] 生成APIの推定コスト: $0.003793 USD（埋め込み・索引構築分は含まない）
+
+## 事後処理（PRのConflictを解決してmerge可能にしたい
+<!-- リモート origin の最新情報を取得して、ローカルの「リモート追跡ブランチ」を更新する -->
+git fetch origin
+
+<!-- git fetch origin で取得・更新された origin/main の内容を、今チェックアウトしているブランチにマージする -->
+git merge origin/main
+
+<!-- 衝突が起きているファイルを特定する -->
+git --no-pager diff --name-only --diff-filter=U
+
+<!-- 衝突が起きているファイルに対してやったこと -->
+
+| ファイル名| 内容|
+|---|---|
+| tools.py| Accept Both Changes|
+| agent.py| 第3回で追加した機能が衝突していたため、AIに聞きながら両方の機能が残るように改修した|
+
+<!-- 衝突解決したやつをもう一度上げ直す　answer.mdはメモを書いて変更したのでこの子も一緒にやる -->
+git add app/tools.py app/agent.py lectures/05/answer.md

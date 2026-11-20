@@ -1,0 +1,76 @@
+{
+  "config": {
+    "base_model": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "seed": 42,
+    "num_train_epochs": 20,
+    "warmup_steps": 6,
+    "lr": 0.0002,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "max_seq_len": 512,
+    "max_new_tokens": 96,
+    "gen": {
+      "do_sample": false
+    }
+  },
+  "versions": {
+    "transformers": "5.18.0",
+    "peft": "0.21.1",
+    "trl": "1.14.2",
+    "torch": "2.11.0+cu130"
+  },
+  "method": "LoRA（量子化なし）",
+  "before": {
+    "label": "before",
+    "n": 38,
+    "format_rate": 0.10526315789473684,
+    "content_rate": 0.0,
+    "both_rate": 0.0,
+    "seconds": 60.0
+  },
+  "after": {
+    "label": "after",
+    "n": 38,
+    "format_rate": 1.0,
+    "content_rate": 0.8157894736842105,
+    "both_rate": 0.8157894736842105,
+    "seconds": 92.6
+  },
+  "regressed": [],
+  "knowledge": [
+    {
+      "質問": "良と重ではどちらが時計早くなりますか",
+      "FAQ にある": false,
+      "学習前の分類": "format_error",
+      "学習前の出力": "{\"answer\": \"重\"}",
+      "学習後の分類": "asserted",
+      "学習後の出力": "{\"answer\": \"馬場状態のことで、乾いている状態から順に良、稍重、重、不良です。\", \"needs_review\": false}"
+    },
+    {
+      "質問": "世界的に有名な馬主の名前は何ですか",
+      "FAQ にある": false,
+      "学習前の分類": "format_error",
+      "学習前の出力": "{\"answer\": \"ジョージ・マクドナルド\"}",
+      "学習後の分類": "needs_review",
+      "学習後の出力": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}"
+    },
+    {
+      "質問": "世界で一番賞金の高いレースは何ですか",
+      "FAQ にある": false,
+      "学習前の分類": "format_error",
+      "学習前の出力": "{\"answer\": \"世界で一番賞金の高いレースは「世界一」です。\"}",
+      "学習後の分類": "needs_review",
+      "学習後の出力": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}"
+    },
+    {
+      "質問": "馬場状態はどのようなものがありますか",
+      "FAQ にある": false,
+      "学習前の分類": "format_error",
+      "学習前の出力": "{\"answer\": \"乾いている状態から順に良、稍重、重、不良\"}",
+      "学習後の分類": "asserted",
+      "学習後の出力": "{\"answer\": \"馬場状態のことで、乾いている状態から順に良、稍重、重、不良です。\", \"needs_review\": false}"
+    }
+  ],
+  "executed_training_myself": true
+}

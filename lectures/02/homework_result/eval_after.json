@@ -1,0 +1,354 @@
+{
+  "summary": {
+    "label": "after",
+    "n": 38,
+    "format_rate": 1.0,
+    "content_rate": 0.8157894736842105,
+    "both_rate": 0.8157894736842105,
+    "seconds": 92.6
+  },
+  "rows": [
+    {
+      "question": "競馬で使われる良、稍重、重、不良とは何ですか？",
+      "raw": "{\"answer\": \"馬場状態のことで、乾いている状態から順に良、稍重、重、不良です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "競馬で馬場が乾燥しているときは何と呼ばれますか？",
+      "raw": "{\"answer\": \"馬場状態のことで、乾いている状態から順に良、稍重、重、不良です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "馬場状態の「稍重」は、どの位置づけになりますか？",
+      "raw": "{\"answer\": \"一般に格の高いレースの方が走破タイムが短くなる傾向があります。また、走破タイムは「時計」と呼ばれることがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "良馬場と不良馬場では、どちらの方が湿っていますか？",
+      "raw": "{\"answer\": \"馬場状態のことで、乾いている状態から順に良、稍重、重、不良です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "馬場状態を水分の少ない順に並べるとどうなりますか？",
+      "raw": "{\"answer\": \"馬場状態のことで、乾いている状態から順に良、稍重、重、不良です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "重馬場よりさらに水分を含んだ状態は何と呼ばれますか？",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "一般的に格の高いレースではタイムにどのような傾向がありますか？",
+      "raw": "{\"answer\": \"一般に格の高いレースの方が走破タイムが短くなる傾向があります。また、走破タイムは「時計」と呼ばれることがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "トップクラスの競走馬が集まるレースでは、時計は速くなる傾向がありますか？",
+      "raw": "{\"answer\": \"一般に格の高いレースの方が走破タイムが短くなる傾向があります。また、走破タイムは「時計」と呼ばれることがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "走破時計が短くなる傾向にあるのは、格上のレースと格下のレースのどちらですか？",
+      "raw": "{\"answer\": \"一般に格の高いレースの方が走破タイムが短くなる傾向があります。また、走破タイムは「時計」と呼ばれることがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "レースの格付けと競走馬の走る速さには、一般的にどのような関係がありますか？",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "高いレベルの競走では、走破タイムはどうなる傾向がありますか？",
+      "raw": "{\"answer\": \"一般に格の高いレースの方が走破タイムが短くなる傾向があります。また、走破タイムは「時計」と呼ばれることがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "競馬において、格の高さはタイムの長短と関係しますか？",
+      "raw": "{\"answer\": \"一般に格の高いレースの方が走破タイムが短くなる傾向があります。また、走破タイムは「時計」と呼ばれることがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "芝と芝以外のコースにはどのようなものがありますか？",
+      "raw": "{\"answer\": \"芝コースと芝以外のコースに大別されます。芝以外にはダートやオールウェザー、ウッドチップなどがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "芝を使用しない競馬場のコースには何がありますか？",
+      "raw": "{\"answer\": \"芝コースと芝以外のコースに大別されます。芝以外にはダートやオールウェザー、ウッドチップなどがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "オールウェザーは芝と同じ区分に入りますか？",
+      "raw": "{\"answer\": \"芝コースと芝以外のコースに大別されます。芝以外にはダートやオールウェザー、ウッドチップなどがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "ダート以外の芝ではないコースの例を挙げてください。",
+      "raw": "{\"answer\": \"芝コースと芝以外のコースに大別されます。芝以外にはダートやオールウェザー、ウッドチップなどがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "ウッドチップを使用したコースは芝コースに分類されますか？",
+      "raw": "{\"answer\": \"芝コースと芝以外のコースに大別されます。芝以外にはダートやオールウェザー、ウッドチップなどがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "競馬のコースを芝か否かで分類すると、どのようになりますか？",
+      "raw": "{\"answer\": \"芝コースと芝以外のコースに大別されます。芝以外にはダートやオールウェザー、ウッドチップなどがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "オスとメスの競走馬はそれぞれ何と呼ばれますか？",
+      "raw": "{\"answer\": \"雄を牡、雌を牝と表します。去勢された雄は騸と表され、別に区分されることがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "競馬でオスの馬を表す漢字は何ですか？",
+      "raw": "{\"answer\": \"雄を牡、雌を牝と表します。去勢された雄は騸と表され、別に区分されることがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "牝馬という言葉はどのような性別の馬を指しますか？",
+      "raw": "{\"answer\": \"雄を牡、雌を牝と表します。去勢された雄は騸と表され、別に区分されることがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "去勢馬を競馬用語では何と表記しますか？",
+      "raw": "{\"answer\": \"別に区分されることがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "騸という漢字は競走馬のどのような状態を示していますか？",
+      "raw": "{\"answer\": \"別に区分されることがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "牡馬が去勢された場合、性別の表記はどう変わりますか？",
+      "raw": "{\"answer\": \"雄を牡、雌を牝と表します。去勢された雄は騸と表され、別に区分されることがあります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "国際的な格付けと国内独自の格付けについて教えてください。",
+      "raw": "{\"answer\": \"国際的な格付けである「GⅠ・GⅡ・GⅢ」、国内独自格付けの「JpnⅠ・JpnⅡ・JpnⅢ」があります。数字が少ないほど格付けが高いとされます。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "GⅠとGⅢでは、どちらの方が格上ですか？",
+      "raw": "{\"answer\": \"国際的な格付けである「GⅠ・GⅡ・GⅢ」、国内独自格付けの「JpnⅠ・JpnⅡ・JpnⅢ」があります。数字が少ないほど格付けが高いとされます。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "JpnⅡよりも格付けが高いJpnのレースは何ですか？",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "国際的なレース格付けで最も高い区分は何ですか？",
+      "raw": "{\"answer\": \"国際的な格付けである「GⅠ・GⅡ・GⅢ」、国内独自格付けの「JpnⅠ・JpnⅡ・JpnⅢ」があります。数字が少ないほど格付けが高いとされます。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "国内独自の格付けでは、どのような記号が使用されますか？",
+      "raw": "{\"answer\": \"国内独自格付けの「JpnⅠ・JpnⅡ・JpnⅢ」があります。数字が少ないほど格付けが高いとされます。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "GⅡとJpnⅡは、それぞれどのような格付けに属しますか？",
+      "raw": "{\"answer\": \"国際的な格付けである「GⅠ・GⅡ・GⅢ」、国内独自格付けの「JpnⅠ・JpnⅡ・JpnⅢ」があります。数字が少ないほど格付けが高いとされます。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "競馬のパドックとは何をする場所ですか？",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "競馬のスタート時に使われるゲートはどのような仕組みですか？",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "競馬のオッズはどのような仕組みで決まりますか？",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "競走馬の血統はレースの成績に影響しますか？",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "競馬のハンデ戦では馬ごとの負担重量をどのように決めますか？",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "レースで同着になった場合、着順や賞金はどう扱われますか？",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "競走馬の蹄鉄にはどのような役割がありますか？",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "競馬の返し馬とは何をすることですか？",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    }
+  ]
+}
