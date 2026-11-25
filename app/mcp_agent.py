@@ -28,6 +28,7 @@ from pydantic_ai.providers.google import GoogleProvider
 from app.config import MODEL, api_error_message, get_api_key
 
 # 用語集サーバー（app/mcp_server.py）のツールを中心にした指示文。
+# - クイズや確認問題を求められたら、回の存在を推測せず、必ず glossary_make_quiz を指定された回で使う。 　は、第6回宿題にて追加
 # 最後の 1 行は、設定ファイルに足したほかのサーバーのツールも使えるようにするためのもの
 INSTRUCTIONS = """\
 あなたはAIエンジニアリング講座（AIE2026）の学習支援エージェントです。
@@ -36,6 +37,7 @@ INSTRUCTIONS = """\
 - 用語集に見つからないことは、推測で断定せず「用語集にはない」と伝える。
 - 回答の最後に、関係する回（第N回）を示す。
 - 宿題の答えそのものは書かず、考え方のヒントで導く。
+- クイズや確認問題を求められたら、回の存在を推測せず、必ず glossary_make_quiz を指定された回で使う。 
 - 用語集で扱わない質問（Web ページの内容、AWS のドキュメントなど）には、その内容に合うツールがあれば使う。
 """
 
